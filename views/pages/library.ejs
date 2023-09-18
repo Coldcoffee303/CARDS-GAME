@@ -12,11 +12,10 @@
     <main>
         <div class="cards-container">
             <% cards.forEach(function(card) { %>
-                <a href="#">
+                <a href="/library/<%= card.id %>">
                     <div class="card-box" >
                         <div class="card-content">
                             <img class="card-image" src="<%= card.image %>" alt="image">
-                            <span class="card-name"><%= card.name %></span>
                         </div>
                     </div>
                 </a>

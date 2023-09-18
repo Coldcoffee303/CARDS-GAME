@@ -14,7 +14,19 @@
 body {
     margin: auto;
     color: black;
-    background-color:#D3D3D3;
+    background-color:#353240;
+}
+
+body::-webkit-scrollbar {
+    width: 0.35rem;
+  }
+  
+body::-webkit-scrollbar-track {
+    background: #0ff0fc;
+}
+  
+body::-webkit-scrollbar-thumb {
+    background: #23232e;
 }
 
 main {
@@ -27,7 +39,7 @@ main {
     height: 100vh;
     position: fixed;
     background-color: var(--bg-primary);
-    transition: width 220ms ease;
+    transition: width 270ms ease;
 }
 
 .navbar-nav {
@@ -80,7 +92,7 @@ main {
     width: 15rem;
 }
 
-.navbar:hover .link-text {
+.navbar:hover .link-text {   
     display: block;
 }
 

@@ -1,10 +1,10 @@
 const express = require('express')
-const {homePage, library} = require('../controller/index')
+const {homePage,libraryPage, cardPage} = require('../controller/index')
 const router = express.Router();
 
 
 router.get('/', homePage);
-router.get('/library', library)
-
+router.get('/library', libraryPage)
+router.get('/library/:cardID', cardPage)
 
 module.exports = router;
