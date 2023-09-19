@@ -1,0 +1,25 @@
+
+.card-container {
+    display:flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.image-container {
+    width: 16%;
+    height: 350px;
+}
+
+.card-image {
+    width: 100%;
+    height: 350px;
+}
+
+.details-container {
+    
+    width: 75%;
+    height: 300;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px 10px;
+}

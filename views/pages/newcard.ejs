@@ -13,7 +13,7 @@
         <div class="formBox">
             <form method="post" id="cardForm">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br>
+                <input type="text" id="name" name="name" required><br><br>
         
                 <label for="grade">Grade:</label>
                 <select id="grade" name="grade" required>
@@ -22,13 +22,13 @@
                     <option value="Rare">Rare</option>
                     <option value="Epic">Epic</option>
                     <option value="Legendary">Legendary</option>
-                </select><br>
+                </select><br><br>
         
                 <label for="stars">Stars (1-5):</label>
-                <input type="number" id="stars" name="stars" min="1" max="5" required><br>
+                <input type="number" id="stars" name="stars" min="1" max="5" ><br><br>
         
                 <label for="info">Info:</label>
-                <textarea id="info" name="info" rows="4" cols="50"></textarea><br>
+                <textarea id="info" name="info" rows="4" cols="50"></textarea><br><br>
 
 
                 <label for="nature">Nature:</label>
@@ -37,17 +37,26 @@
                     <option value="Water">Water</option>
                     <option value="Earth">Earth</option>
                     <option value="Lightning">Lightning</option>
-                </select><br>
+                </select><br><br>
         
                 <label for="awakenedNature">Awakened Nature:</label>
-                <input type="text" id="awakenedNature" name="awakenedNature"><br>
+                <input type="text" id="awakenedNature" name="awakenedNature"><br><br>
         
                 <label for="awakenedAbilityActive">Awakened Ability Active:</label>
-                <input type="checkbox" id="awakenedAbilityActive" name="awakenedAbilityActive"><br>
+                <input type="checkbox" id="awakenedAbilityActive" name="awakenedAbilityActive"><br><br>
 
         
                 <label for="image">Image path:</label>
-                <input type="text" id="image" name="image" required><br>
+                <input type="text" id="image" name="image" required><br><br>
+
+                <label for="attack">Attack:</label>
+                <input type="text" id="attack" name="attack" required><br><br>
+
+                <label for="defense">Defense:</label>
+                <input type="text" id="attack" name="attack" required><br><br>
+
+                <label for="speed">Speed:</label>
+                <input type="speed" id="speed" name="speed" required><br><br>
         
                 <button type="submit">Register Card</button>
             </form>
