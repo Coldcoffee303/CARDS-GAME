@@ -6,6 +6,15 @@ const natureEnum = [
 ]
 
 
+const gradeMaximumCaps = {
+    Common: { attack: 250, defense: 250, speed: 250 },
+    Rare: { attack: 500, defense: 500, speed: 500 },
+    Epic: { attack: 750, defense: 750, speed: 750 },
+    Legendary: { attack: 1000, defense: 1000, speed: 1000 },
+  };
+
+
+
 const beastCardSchema = new schema({
     name: {
         type: String,
@@ -13,16 +22,14 @@ const beastCardSchema = new schema({
     },
     grade: {
         type: String,
-        enum: ['Common','Uncommon','Rare','Epic','Legendary'],
+        enum: ['Common','Rare','Epic','Legendary'],
         required: true,
     },
     stars: {
         type: Number,
         min: 1,
         max: 5,
-        required: function(){
-            return this.grade === 'Legendary'
-        },
+        default: 1,
     },
 
     info: {
@@ -52,7 +59,47 @@ const beastCardSchema = new schema({
     image: {
         type: String,
         required: true,
-      }
+    },
+    attack: {
+        type: Number,
+        validate: {
+            validator: function() {
+                if(!this.grade){
+                   return true; 
+                }
+                const gradeMaximumCap = gradeMaximumCaps[this.grade];
+                return this.attack <= gradeMaximumCap.attack;
+            },
+            message: 'Attack exceeds the maximum cap for this grade.', 
+        },
+    },
+    defense: {
+        type: Number,
+        validate:  {
+            validator: function() {
+                if(!this.grade){
+                    return true;
+                }
+                const gradeMaximumCap = gradeMaximumCaps[this.grade];
+                return this.defense <= gradeMaximumCap.defense;
+            },
+            message: 'Defense exceeds the maximum cap for this grade. ',
+        }
+    },
+    speed: {
+        type: Number,
+        validate:  {
+            validator: function() {
+                if(!this.grade){
+                    return true;
+                }
+                const gradeMaximumCap = gradeMaximumCaps[this.grade];
+                return this.speed <= gradeMaximumCap.speed;
+            },
+            message: 'Speed exceeds the maximum cap for this grade. ',
+        }
+    },
+
 })
 
 const BeastCard = mongoose.model('BeastCard', beastCardSchema);

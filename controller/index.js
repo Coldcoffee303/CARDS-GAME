@@ -19,13 +19,8 @@ const libraryPage = async (req, res) => {
 const cardPage = async (req, res) =>{
   try {
     const {cardID} = req.params;
-    const getcard =  await BeastCard.findById(cardID);
-    res.json({
-      name: getcard.name,
-      grade: getcard.grade,
-      stars: getcard.stars,
-      info: getcard.info
-    })
+    const card =  await BeastCard.findById(cardID);
+    res.render('pages/card', {card})
   } catch(error) {
     console.error(error)
     res.json({message: 'error'})
