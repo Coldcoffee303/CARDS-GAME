@@ -1,4 +1,4 @@
-const {BeastCard} = require('../model')
+const {BeastCard} = require('../../models/schema')
 
 const homePage = (req,res)=>{
     res.render('pages/home')
@@ -27,4 +27,9 @@ const cardPage = async (req, res) =>{
   }
 }
 
-module.exports = {homePage, libraryPage, cardPage}
+const marketplace = (req, res) =>{
+  res.render('pages/marketplace')
+}
+
+
+module.exports = {homePage, libraryPage, cardPage, marketplace}
