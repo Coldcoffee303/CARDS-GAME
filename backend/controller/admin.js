@@ -1,4 +1,4 @@
-const {BeastCard} = require('../model')
+const {BeastCard} = require('../../models/schema')
 
 const newCard_get = (req,res)=>{
     console.log('admin page accessed')
