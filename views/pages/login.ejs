@@ -28,7 +28,7 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            emailError.textcontent = '';
+            emailError.textContent = '';
             passwordError.textContent = '';
             
             const email = form.email.value;
@@ -43,7 +43,7 @@
                 const data = await res.json();
 
                 if(data.errors) {
-                    emailError.textcontent = data.errors.email;
+                    emailError.textContent = data.errors.email;
                     passwordError.textContent = data.errors.password;
                 }
 
