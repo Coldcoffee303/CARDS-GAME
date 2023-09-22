@@ -62,3 +62,12 @@ button:hover {
     width: 90%;
   }
 }
+
+/* CSS to style error messages */
+.email.error,
+.password.error {
+  color: red; /* Set the color for error text */
+  font-size: 14px; /* Adjust the font size as needed */
+  margin-top: 5px; /* Add some space between the input field and the error message */
+}
+
