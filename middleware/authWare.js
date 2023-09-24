@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const {User} = require('../models/schema');
 require('dotenv').config()
 
 const JWT = process.env.JWT;
@@ -9,14 +10,16 @@ const requireAuth = (req, res, next) => {
     if(token) {
         jwt.verify( token, JWT, (err, decodedToken) =>{
             if(err) {
+                req.user = null;
                 console.log(err.message);
                 res.redirect('/user/login');
             } else {
-                console.log(decodedToken);
+                req.user = decodedToken.id;
                 next();
             }
         })
     } else {
+        req.user = null;
         res.redirect('/user/login');
     }
 }

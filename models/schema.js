@@ -127,7 +127,25 @@ const userSchema = new Schema({
         required: true,
         minLength: [7, 'Minimum password length is 7 characters'],
     },
+    astralCoins: {
+        type: Number,
+        default: 0,
+    },
+    inventory: [
+        {
+            cardId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'BeastCard',         
+            },
+            quantity: {
+                type: Number,
+                default: 0,
+            },
+        },
+    ],
 });
+
+
 
 userSchema.statics.login = async function(email, password) {
     const user = await this.findOne({email});
@@ -150,7 +168,32 @@ userSchema.pre('save', async function (next) {
 });
 
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 
-module.exports = {BeastCard, User}
+
+
+// marketplace
+
+const listingSchema = new mongoose.Schema({
+    cardId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'BeastCard',
+        required: true,
+    },
+    sellerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', 
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+});
+  
+const Listing = mongoose.model('Listing', listingSchema);
+
+
+
+module.exports = {BeastCard, User, Listing};

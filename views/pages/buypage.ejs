@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuyPage</title>
+    
+    <link rel="stylesheet" href="/stylesheets/buypage.css">
+    <%- include("../partials/head");  %>
+</head>
+<body>
+    <%- include("../partials/nav.ejs"); %>
+    <main>
+
+    <h1>Marketplace - Buy a Card</h1>
+    
+    <!-- <p>Welcome, <%= user.name %>!</p> -->
+    <!-- <p>Your current Astral Coins balance: <%= user.astralCoins %></p> -->
+    
+    <h2>Available Card Listings</h2>
+    <ul>
+        <% activeListings.forEach(listing => { %>
+            <li>
+                Card: <%= listing.cardId.name %><br>
+                Seller: <%= listing.sellerId.name %><br>
+                Price: <%= listing.price %> Astral Coins<br>
+                Details: <%= listing.details %><br>
+                <!-- Add a form for purchasing the card -->
+                <form method="POST" action="/marketplace/buy/<%= listing._id %>">
+                    <button type="submit">Buy Card</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+
+    </main>
+    
+</body>
+</html>
