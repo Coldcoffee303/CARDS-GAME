@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SellPage</title>
+    <%- include("../partials/head");  %>
+    <link rel="stylesheet" href="/stylesheets/sellpage.css">
+</head>
+<body>
+    <%- include("../partials/nav");  %>
+
+
+    <main>
+        <p>Welcome, <%= user.name %>!</p>
+        <p>Your current Astral Coins balance: <%= user.astralCoins %></p>
+        
+        <form method="POST">
+            <label for="cardToSell">Select a card to sell:</label>
+            <select id="cardToSell" name="cardToSell" required>
+                <% user.inventory.forEach(card => { %>
+                    <option value="<%= card.cardId._id %>"><%= card.cardId.name %> (Quantity: <%= card.quantity %>)</option>
+                <% }); %>
+            </select>
+            
+            <label for="sellPrice">Sell Price (Astral Coins):</label>
+            <input type="number" id="sellPrice" name="sellPrice" required>
+            
+            <label for="sellDetails">Additional Details (optional):</label>
+            <textarea id="sellDetails" name="sellDetails"></textarea>
+            
+            <button type="submit">List for Sale</button>
+        </form>
+
+        <h2>Your Active Listings</h2>
+        <ul>
+            <% activeListings.forEach(listing => { %>
+                <li>
+                    Card: <%= listing.cardId.name %><br>
+                    Price: <%= listing.price %> Astral Coins<br>
+                    Details: <%= listing.details %><br>
+                    <form method="POST" action="/marketplace/cancel-listing/<%= listing._id %>">
+                        <button type="submit">Cancel Listing</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    </main>
+
+
+
+    
+
+</body>
+</html>

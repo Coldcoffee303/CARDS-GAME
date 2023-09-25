@@ -1,0 +1,57 @@
+/* Form Container */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+  }
+  
+  /* Form Label */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Select Input */
+  select,
+  input[type="number"],
+  textarea {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Textarea */
+  textarea {
+    resize: vertical; /* Allows vertical resizing of the textarea */
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Center the form horizontally */
+  form {
+    text-align: center;
+  }
+  
+  /* Optional: Add more styling as needed */
+  

@@ -5,38 +5,15 @@
     <title>MarketPlace</title>
     <%- include("../partials/head");  %>
     <link rel="stylesheet" href="/stylesheets/marketplace.css">
-    <script>
-        function displayer(vis,invis) {
-            document.getElementById(vis).style.display="block";
-            document.getElementById(invis).style.display="none";
-
-        }
-    </script>
 </head>
 <body>
     <%- include("../partials/nav.ejs"); %>
     <main>
         <div class="market-container">
-            <button id="sell-button" type="button" onclick="displayer('sell-container','buy-container')">Sell</button>
-            <button id="buy-button" type="button" onclick="displayer('buy-container','sell-container')">Buy</button>
-
-            <div id="sell-container" class="sell-container" >
-                <span>
-                    Sell your cards here.
-                </span>
-            </div>
-
-            <div id="buy-container" class="buy-container">
-                <span>
-                    Buy cards here
-                </span>
-            </div>
-            
-
+            <a href="/marketplace/sell">Sell Cards</a>
+            <a href="/marketplace/buy">Purchase Cards</a>
         </div>
     </main>
 </body>
-
-
 
 </html>

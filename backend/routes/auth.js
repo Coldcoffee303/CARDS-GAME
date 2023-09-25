@@ -12,4 +12,12 @@ router.get('/signup', signup_get);
 router.post('/signup', signup_post);
 
 
+// logout
+router.get('/logout', (req,res)=>{
+    res.render('partials/logout')
+})
+
+router.post('/logout', (req, res)=>{
+    res.clearCookie('jwt', {path: '/', domain: 'localhost'}).send();
+})
 module.exports = router;

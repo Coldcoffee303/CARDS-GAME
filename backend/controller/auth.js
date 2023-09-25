@@ -54,7 +54,10 @@ const signup_post = async (req, res) => {
     const {name, email, password} = req.body;
     
     try {
-        const user = await User.create({ name: name, email: email, password: password });
+        const user = await User.create({ name: name, email: email, password: password, inventory: [ {
+            cardId: "65093e6cdbe03fcc7bf2deba",
+            quantity: 1
+        }] });
         const token = createToken(user._id);
         res.cookie('jwt', token, {httpOnly: true,maxAge: maxAge * 1000});
         res.status(200).json({user: user._id});

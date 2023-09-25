@@ -1,0 +1,8 @@
+<script> async function logout() {
+    const res = await fetch('/user/logout', {
+        method: 'POST'
+    });
+    location.assign('/');
+}  
+</script>
+<button type="button" onclick="logout()"  >CLick to Logout</button>
