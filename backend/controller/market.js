@@ -1,5 +1,4 @@
-const {BeastCard, User, Listing} = require('../../models/schema');
-const jwt = require('jsonwebtoken');
+const { User, Listing, Auction} = require('../../models/schema');
 const JWT = process.env.JWT;
 
 const marketplace = (req, res) =>{
@@ -15,8 +14,9 @@ const sell_get = async (req, res) => {
         const activeListings = await Listing.find({ sellerId: currentUser})
           .populate('cardId')
           .populate('sellerId');
-        
-        
+  
+
+
         res.render('pages/sellpage', {  user,  activeListings });
       } catch (err) {
 
@@ -134,6 +134,128 @@ const cancel_listing = async (req, res) => {
 } 
 
 
+// auction controllers
+
+const createAuction_get = async (req, res)=>{
+  try {
+    const user = await User.findById(req.user).populate('inventory.cardId');
+    if(!user){
+      return res.status(400).send('User not found');
+    }
+
+    res.render('pages/createauction', {user});
+  } catch(err) {
+    console.log(err);
+    res.status(500).send('Internal Server Error');
+  }
+  
+};
+
+// duration calculation
+function calculateDuration(cardGrade) {
+  const gradeDuration = {
+    'Common': 5 * 60 * 1000,
+    'Rare': 10 * 60 * 1000,
+    'Epic' : 30 * 60 * 1000,
+    'Legendary': 1 * 60 * 60 * 1000
+  };
+  return gradeDuration[cardGrade];
+}
 
 
-module.exports = {marketplace, sell_get, sell_post, buy_get, buy_post, cancel_listing};
+
+const createAuction_post = async (req, res)=> {
+  const { cardToSell, sellPrice, sellDetails } = req.body;
+  try {
+    const user = await User.findById(req.user).populate('inventory.cardId');
+    if(!user) {
+      return res.status(400).send('User not found');
+    }
+
+    const selectedCard = await user.inventory.find(item => item.cardId._id.toString() === cardToSell);
+    if(!selectedCard) {
+      return res.status(400).send('Card not found in your inventory');
+    }
+    const item = new Auction({
+      cardId: cardToSell,
+      sellerId: user._id,
+      startingPrice: sellPrice,
+      currentPrice: sellPrice,
+      duration: calculateDuration(selectedCard.cardId.grade)
+    })
+    if(item) {
+      item.save()
+      res.redirect('/marketplace/auctions');
+    } else {
+      res.status(500).send('card is not available in inventory');
+    }
+  } catch(err) {
+    console.log(err);
+    res.status(500).send('Internal Server Error');
+  }
+
+};
+
+const auction_get = async (req, res)=>{
+  const {auctionId} = req.params;
+  try {
+    const item = await Auction.findById(auctionId).populate('cardId sellerId bids.bidder'); 
+    if(!item) {
+      return res.send('auction item not found');
+    }
+    res.render('pages/auctionpage', {auction: item});
+
+  } catch(err) {
+    console.log(err)
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+const auction_post = async (req, res)=>{
+  const {bidAmount} = req.body;
+  const auctionId = req.params.auctionId;
+  const currentUser = req.user;
+  try {
+    const item = await Auction.findById(auctionId);
+    if(item.sellerId._id.toString() !== currentUser){
+      const user = await User.findById(currentUser);
+      if(user) {
+        item.bids.push({
+          bidder: user._id,
+          bidAmount: parseInt(bidAmount),
+        })
+        item.currentPrice = parseInt(bidAmount);
+        item.save();
+      }
+    }
+    res.redirect('/marketplace/auctions/'+ auctionId);
+  } catch(err) {
+    console.log(err)
+    res.status(500).send('Internal Server Error');
+  }
+
+};
+
+const auctionsList_get = async (req, res)=>{
+  try {
+    const activeAuctions = await Auction.find().populate('cardId sellerId');
+    res.render('pages/auctions', {activeAuctions});
+  } catch(err) {
+    console.log(err);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = {
+  marketplace,
+  sell_get,
+  sell_post,
+  buy_get, 
+  buy_post,
+  cancel_listing,
+  auctionsList_get,
+  createAuction_get,
+  createAuction_post,
+  auction_get,
+  auction_post,
+};

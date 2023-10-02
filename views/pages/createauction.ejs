@@ -10,16 +10,15 @@
 <body>
     <%- include("../partials/nav");  %>
 
-
     <main>
         <p>Welcome, <%= user.name %>!</p>
         <p>Your current Astral Coins balance: <%= user.astralCoins %></p>
         
         <form method="POST">
-            <label for="cardToSell">Select a card to sell:</label>
+            <label for="cardToSell">Select a card to Auction:</label>
             <select id="cardToSell" name="cardToSell" required>
                 <% user.inventory.forEach(card => { %>
-                    <option value="<%= card.cardId._id %>"><%= card.cardId.name %> (Quantity: <%= card.quantity %>)</option>
+                    <option value="<%= card.cardId._id %>"><%= card.cardId.name %></option>
                 <% }); %>
             </select>
             
@@ -29,26 +28,8 @@
             <label for="sellDetails">Additional Details (optional):</label>
             <textarea id="sellDetails" name="sellDetails"></textarea>
             
-            <button type="submit">List for Sale</button>
+            <button type="submit">List for Auction</button>
         </form>
-
-        <h2>Your Active Listings</h2>
-        <ul>
-            <% activeListings.forEach(listing => { %>
-                <li>
-                    Card: <%= listing.cardId.name %><br>
-                    Price: <%= listing.price %> Astral Coins<br>
-                    <form method="POST" action="/marketplace/cancel-listing/<%= listing._id %>">
-                        <button type="submit">Cancel Listing</button>
-                    </form>
-                </li>
-            <% }); %>
-        </ul>
     </main>
-
-
-
-    
-
 </body>
 </html>

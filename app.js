@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 // routes
 app.use('/', indexRouter);
-app.use('/user', userRouter);
+app.use('/user', requireAuth , userRouter);
 app.use('/admin', adminRouter);
 app.use('/marketplace', requireAuth, marketRouter);
 

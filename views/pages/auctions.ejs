@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction</title>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <main>
+        <h1>Card Auctions</h1>
+        <h2>Active Auctions</h2>
+        <ul>
+            <% activeAuctions.forEach(auction => { %>
+                <div class="auction-item">
+                    <li>
+                        <article>Card: <%= auction.cardId.name %></article> <br>
+                        <article>Seller: <%= auction.sellerId.name %></article>  <br>
+                        <article>Current Price: <%= auction.currentPrice %></article> <br>
+                        <button type="submit" onclick="location.assign('/marketplace/auctions/<%= auction._id %>')">CheckOut</button>
+                    </li>    
+                </div>
+            <% }); %>
+        </ul>
+    </main>
+</body>
+</html>

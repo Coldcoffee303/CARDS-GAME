@@ -3,7 +3,6 @@ const {BeastCard} = require('../../models/schema')
 
 
 const homePage = (req,res)=>{
-    console.log(req.cookies.jwt)
     res.render('pages/home')
 }
 
