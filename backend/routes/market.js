@@ -1,16 +1,22 @@
-const {marketplace, sell_get, sell_post, buy_get, buy_post, cancel_listing} = require('../controller/market');
+const market = require('../controller/market');
 const express = require('express');
 
 const router = express.Router();
 
+// GET 
+router.get('/', market.marketplace);
+router.get('/sell', market.sell_get);
+router.get('/buy', market.buy_get);
+router.get('/auctions', market.auctionsList_get);
+router.get('/auctions/create', market.createAuction_get);
+router.get('/auctions/:auctionId', market.auction_get); 
 
-router.get('/', marketplace);
-router.get('/sell', sell_get);
-router.get('/buy', buy_get);
-
-router.post('/sell', sell_post);
-router.post('/buy/:listId', buy_post);
-router.post('/cancel-listing/:listId', cancel_listing);
+// POST
+router.post('/sell', market.sell_post);
+router.post('/buy/:listId', market.buy_post);
+router.post('/cancel-listing/:listId', market.cancel_listing);
+router.post('/auctions/create', market.createAuction_post);
+router.post('/auctions/:auctionId', market.auction_post); 
 
 
 module.exports = router;

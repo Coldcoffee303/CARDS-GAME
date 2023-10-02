@@ -41,8 +41,8 @@
                     headers: { 'content-Type': 'application/json'}
                 });
                 const data = await res.json();
-
                 if(data.errors) {
+                    console.log(data.errors);
                     emailError.textContent = data.errors.email;
                     passwordError.textContent = data.errors.password;
                 }
@@ -53,8 +53,9 @@
 
             } catch(err) {
                 console.log(err);
+                console.log(err);
             }
-        })
+        });
     </script>
 
 </html>

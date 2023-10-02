@@ -1,5 +1,5 @@
 const express = require('express');
-const { login_get, login_post, signup_get, signup_post } = require('../controller/auth');
+const { login_get, login_post, signup_get, signup_post, profile_get, inventory_get } = require('../controller/auth');
 const router = express.Router();
 
 
@@ -20,4 +20,12 @@ router.get('/logout', (req,res)=>{
 router.post('/logout', (req, res)=>{
     res.clearCookie('jwt', {path: '/', domain: 'localhost'}).send();
 })
+
+
+// profile
+
+
+router.get('/', profile_get );
+router.get('/inventory', inventory_get);
+
 module.exports = router;

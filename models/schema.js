@@ -129,7 +129,7 @@ const userSchema = new Schema({
     },
     astralCoins: {
         type: Number,
-        default: 0,
+        default: 100,
     },
     inventory: [
         {
@@ -163,7 +163,9 @@ userSchema.statics.login = async function(email, password) {
 
 userSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
+    console.log(this.password);
     this.password = await bcrypt.hash(this.password, salt);
+    console.log(this.password);
     next();
 });
 
@@ -194,6 +196,55 @@ const listingSchema = new mongoose.Schema({
   
 const Listing = mongoose.model('Listing', listingSchema);
 
+// bidder schema
+const bidSchema = new Schema({
+    bidder: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    bidAmount: {
+        type: Number,
+        required: true
+    },
+    bidTime: {
+        type: Date,
+        default: Date.now,
+    },
+});
 
 
-module.exports = {BeastCard, User, Listing};
+// auction schema
+const auctionSchema = new Schema({
+    cardId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'BeastCard',
+        required: true
+    },
+    sellerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+
+    startingPrice: {
+        type: Number,
+        required: true
+    },
+
+    currentPrice: {
+        type: Number,
+        default: this.startingPrice
+    },
+    duration: {
+        type: Number,
+        required: true,
+    },
+
+    bids: [bidSchema],
+});
+
+const Auction = mongoose.model('Auction', auctionSchema);
+
+
+module.exports = {BeastCard, User, Listing, Auction};

@@ -11,11 +11,11 @@ const handleErrors = (err) =>{
     console.log(err.message, err.code);
     let errors = { email: '', password: ''};
 
-    if(err.message === 'incorrect email') {
+    if(err.message === 'Incorrect Email') {
         errors.email = 'this email is not registered';
     }
 
-    if(err.message === 'incorrect password') {
+    if(err.message === 'Incorrect Password') {
         errors.email = 'this password is incorrect';
     }
 
@@ -79,7 +79,34 @@ const login_post = async (req, res) => {
         res.status(200).json({user: user._id});
     } catch(err) {
         const errors = handleErrors(err);
-        res.status(400).json(errors);
+        res.status(400).json({errors:errors});
+    }
+}
+
+
+const profile_get = async (req, res) => {
+    const profile = req.user;
+
+    try {
+        const user = await User.findById(profile).populate('inventory.cardId');
+        res.render('pages/profile', {user});
+
+    } catch(err) {
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+
+
+const inventory_get = async (req, res) => {
+    const profile = req.user;
+
+    try {
+        const user = await User.findById(profile).populate('inventory.cardId');
+        res.render('pages/inventory', {inventory:user.inventory});
+
+    } catch(err) {
+        res.status(500).send('Internal Server Error');
     }
 }
 
@@ -87,4 +114,5 @@ const login_post = async (req, res) => {
 
 
 
-module.exports = {login_get, signup_get, login_post, signup_post};
+
+module.exports = {login_get, signup_get, login_post, signup_post, profile_get, inventory_get};

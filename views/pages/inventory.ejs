@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <%- include("../partials/head");  %>
+    <link rel="stylesheet" href="/stylesheets/library.css">
+</head>
+<body>
+    <%- include("../partials/nav.ejs"); %>
+
+    <main>
+        <div class="cards-container">
+            <% inventory.forEach(function(card) { %>
+                <a href="/library/<%= card.cardId.id %>">
+                    <div class="card-box" >
+                        <div class="card-content">
+                            <% try { %>
+                                <img class="card-image" src="/<%=card.cardId.image %>" alt="image">
+                              <% } catch (error) { %>
+                                <p>Error loading image: <%= error.message %></p>
+                              <% } %>
+                        </div>
+                    </div>
+                </a>
+            <% }); %>
+    </main>
+</body>
+</html>

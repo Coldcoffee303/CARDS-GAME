@@ -45,9 +45,9 @@
                 });
                 const data = await res.json();
 
-                if(data.errors) {
-                    emailError.textcontent = data.errors.email;
-                    passwordError.textContent = data.errors.password;
+                if(data) {
+                    emailError.textContent = data.email;
+                    passwordError.textContent = data.password;
                 }
 
                 if(data.user) {
