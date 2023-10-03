@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
     <%- include("../partials/head");  %>
     <title><%= user.name %></title>
 </head>
@@ -12,7 +13,7 @@
         <div class="profile-container">
             <p><strong>Player's Name: </strong><%= user.name %></p>
             <p><strong>Astral Coins: </strong><%= user.astralCoins %></p>
-            <p><a href="user/logout">Logout</a></p>
+            <button type="submit" onclick="location.assign('/user/logout')" class="logout-button">Logout</button>
         </div>
     </main>
 </body>

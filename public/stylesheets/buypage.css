@@ -1,6 +1,47 @@
 
-  
-  
-  
-  /* Adjust the styles as needed to match your design preferences. */
-  
+main>a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+main>a:hover {
+  text-decoration: underline;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+main>h1, h2 {
+  color: #007bff;
+}
+
+main>ul {
+  list-style: none;
+  padding: 0;
+}
+
+main>li {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main>button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}

@@ -5,9 +5,10 @@ const path = require('path');
 // route imports
 const indexRouter = require('./backend/routes/index.js');
 const adminRouter = require('./backend/routes/admin.js');
-const userRouter = require('./backend/routes/auth.js')
+const userRouter = require('./backend/routes/auth.js');
 const marketRouter = require('./backend/routes/market.js');
 const { requireAuth } = require('./middleware/authWare.js');
+const apiIndexRouter =require('./api/routes/index.js');
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use('/', indexRouter);
 app.use('/user', requireAuth , userRouter);
 app.use('/admin', adminRouter);
 app.use('/marketplace', requireAuth, marketRouter);
-
+app.use('/api', apiIndexRouter);
 
 // listener
 app.listen(8000, ()=>{
