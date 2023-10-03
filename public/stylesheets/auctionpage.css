@@ -1,0 +1,61 @@
+
+.main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.auction-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.info-label {
+    font-weight: bold;
+}
+
+.bid-list {
+    list-style: none;
+    padding: 0;
+}
+
+.bidder-name {
+    font-weight: bold;
+    color: #007bff; /* Or your preferred color */
+}
+
+.bid-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.bid-form label,
+.bid-form input,
+.bid-form button {
+    margin-bottom: 10px;
+}
+
+.bid-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.bid-form button {
+    background-color: #28a745; /* Green color, or your preferred color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bid-form button:hover {
+    background-color: #218838; /* Darker green color, or your preferred hover color */
+}

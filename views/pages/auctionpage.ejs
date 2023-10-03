@@ -4,29 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auction</title>
-    <!-- Add your CSS links or styles here -->
+    <link rel="stylesheet" href="/stylesheets/auctionpage.css">
+    <%- include('../partials/head') %>
+    
 </head>
 <body>
-
-                Card: <%= auction.cardId.name %><br>
-                Seller: <%= auction.sellerId.name %><br>
-                Current Price: <%= auction.currentPrice %><br>
-
-                Bids:<br>
-                <ul>
-                    <% auction.bids.forEach(bid => { %>
-                        <li><%= bid.bidder.name %> - <%= bid.bidAmount %></li>
-                    <% }); %>
-                </ul>
-                
-                <form method="POST">
-                    <input type="hidden" name="auctionId" value="<%= auction._id %>">
-                    <label for="bidAmount">Place Your Bid:</label>
-                    <input type="number" id="bidAmount" name="bidAmount" required>
-                    <button type="submit">Bid</button>
-                </form>
-    </ul>
-
+    <%- include('../partials/nav') %>
+    <main class="auction-details">
+        <div class="auction-info">
+            <p><span class="info-label">Card:</span> <%= auction.cardId.name %></p>
+            <p><span class="info-label">Seller:</span> <%= auction.sellerId.name %></p>
+            <p><span class="info-label">Current Price:</span> <%= auction.currentPrice %></p>
+            <p><span class="info-label">Bids:</span></p>
+            <ul class="bid-list">
+                <% auction.bids.forEach(bid => { %>
+                    <li><span class="bidder-name"><%= bid.bidder.name %></span> - <%= bid.bidAmount %></li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="bid-form">
+            <form method="POST">
+                <input type="hidden" name="auctionId" value="<%= auction._id %>">
+                <label for="bidAmount">Place Your Bid:</label>
+                <input type="number" id="bidAmount" name="bidAmount" required>
+                <button type="submit">Bid</button>
+            </form>
+        </div>
+    </main>
+    
 
 </body>
 </html>

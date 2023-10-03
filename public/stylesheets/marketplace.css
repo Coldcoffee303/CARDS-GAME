@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+a {
+    
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: hidden;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.market-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.market-container a {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.market-container a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+

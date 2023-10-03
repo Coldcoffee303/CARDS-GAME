@@ -1,11 +1,18 @@
-const {BeastCard} = require('../../models/schema')
+const { Query } = require('mongoose');
+const {BeastCard, Listing} = require('../../models/schema')
 
 
 
-const homePage = (req,res)=>{
-    res.render('pages/home')
+const homePage = async (req,res)=>{
+  try {
+    const activeListings = await Listing.find().populate('cardId sellerId').sort({ createdAt: -1 }).limit(3).exec();
+    console.log(activeListings);
+    res.render('pages/home', {activeListings});
+  } catch(err) {
+    console.log(err);
+    res.status(500).send('Internal Server Error');
+  }
 }
-
 const libraryPage = async (req, res) => {
     try {
       const cards = await BeastCard.find(); 

@@ -3,9 +3,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="/stylesheets/buypage.css">
     <%- include("../partials/head");  %>
 </head>
 <body>
     <%- include("../partials/nav.ejs"); %>
+    <main>
+        <div class="latest">
+            <h2>Latest Sellings</h2>
+            <ul>
+                <% activeListings.forEach(listing => { %>
+                    <li>
+                        Card: <%= listing.cardId.name %><br>
+                        Seller: <%= listing.sellerId.name %><br>
+                        Price: <%= listing.price %> Astral Coins<br>
+                        Details: <%= listing.details %><br>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div id="center">
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/javascripts/script.js"></script>
+    </main>
 </body>
 </html>
