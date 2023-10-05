@@ -1,5 +1,5 @@
 const express = require('express');
-const { login_get, login_post, signup_get, signup_post, profile_get, inventory_get } = require('../controller/auth');
+const { login_get, login_post, signup_get, signup_post, profile_get, inventory_get, phoneUpdate, phoneUpdate_post } = require('../controller/auth');
 const router = express.Router();
 
 
@@ -27,5 +27,10 @@ router.post('/logout', (req, res)=>{
 
 router.get('/', profile_get );
 router.get('/inventory', inventory_get);
+
+
+// update mobile number
+router.get('/mobile', phoneUpdate);
+router.post('/mobile', phoneUpdate_post);
 
 module.exports = router;

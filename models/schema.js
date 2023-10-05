@@ -143,6 +143,10 @@ const userSchema = new Schema({
             },
         },
     ],
+    mobile : {
+        type: Number,
+        required: false
+    }
 });
 
 

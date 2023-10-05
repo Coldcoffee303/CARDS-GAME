@@ -112,7 +112,25 @@ const inventory_get = async (req, res) => {
 
 
 
+const phoneUpdate = (req, res)=> {
+    res.send(`<form method="POST">
+        <label for="mobile" >Phone Number</label>
+        <input name="mobile" />
+        <button type="submit">Submit</button>
+    </form>`)
+}
 
 
+const phoneUpdate_post = async (req, res)=> {
+    try{
+        const user = await User.findById(req.user);
+        user.mobile = parseInt(req.body.mobile);
+        user.save();
+        res.redirect('/user');
+    } catch(error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
 
-module.exports = {login_get, signup_get, login_post, signup_post, profile_get, inventory_get};
+module.exports = {login_get, signup_get, login_post, signup_post, profile_get, inventory_get, phoneUpdate, phoneUpdate_post};
