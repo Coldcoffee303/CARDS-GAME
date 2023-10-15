@@ -22,6 +22,15 @@ main {
     margin: 10px 0;
 }
 
+.edit-button {
+    background-color: green; /* Or your desired color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .logout-button {
     background-color: #ff6347; /* Or your desired color */
     color: #fff;
