@@ -59,7 +59,8 @@ const signup_post = async (req, res) => {
             quantity: 1
         }] });
         const token = createToken(user._id);
-        res.cookie('jwt', token, {httpOnly: true,maxAge: maxAge * 1000});
+        const domain = req.hostname === 'localhost' ? 'localhost' : 'cards-game-nine.vercel.app';
+        res.cookie('jwt', token, {httpOnly: true,maxAge: maxAge * 1000, domain: domain});
         res.status(200).json({user: user._id});
 
     } catch(err) {
