@@ -18,7 +18,7 @@ router.get('/logout', (req,res)=>{
 })
 
 router.post('/logout', (req, res) => {
-    const domain = req.hostname === 'localhost' ? 'localhost' : 'cards-game-nine.vercel.app'; // Replace 'vercel-app-domain' with your actual Vercel domain
+    const domain = req.hostname === 'localhost' ? 'localhost' : 'cards-game-nine.vercel.app';
     res.clearCookie('jwt', { path: '/', domain }).redirect('/');
 });
 

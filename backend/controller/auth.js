@@ -60,7 +60,7 @@ const signup_post = async (req, res) => {
         }] });
         const token = createToken(user._id);
         const domain = req.hostname === 'localhost' ? 'localhost' : 'cards-game-nine.vercel.app';
-        res.cookie('jwt', token, {httpOnly: true,maxAge: maxAge * 1000, domain: domain});
+        res.cookie('jwt', token, {httpOnly: true,maxAge: maxAge * 9000, domain: domain, secure: true});
         res.status(200).json({user: user._id});
 
     } catch(err) {
@@ -76,7 +76,8 @@ const login_post = async (req, res) => {
     try {
         const user = await User.login(email, password);
         const token = createToken(user._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 9000});
+        const domain = req.hostname === 'localhost' ? 'localhost' : 'cards-game-nine.vercel.app';
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 9000, domain: domain, secure:true});
         res.status(200).json({user: user._id});
     } catch(err) {
         const errors = handleErrors(err);
